@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Scanner - Security Analysis Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>Vulnerability Scanner</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1>Website Security Scanner</h1>
+            <p>Identify vulnerabilities and security weaknesses in your website</p>
+        </div>
+
+        <div class="scanner-section">
+            <div class="scanner-card">
+                <h2>Scan Website</h2>
+                <form id="scanForm" class="scan-form">
+                    <div class="form-group">
+                        <label for="urlInput">Enter Website URL:</label>
+                        <input type="text" id="urlInput" placeholder="https://example.com" required>
+                        <small>Example: https://example.com or example.com</small>
+                    </div>
+                    <button type="submit" class="btn-scan">
+                        <i class="fas fa-search"></i> Start Scan
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="scanResults" class="results-section" style="display: none;">
+            <div class="results-container">
+                <div class="score-section">
+                    <div class="security-score">
+                        <div class="score-circle">
+                            <span id="scoreValue">0</span>%
+                        </div>
+                        <p>Security Score</p>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <div class="detail-card">
+                        <h3><i class="fas fa-lock"></i> SSL/TLS Certificate</h3>
+                        <div id="sslInfo" class="info-content"></div>
+                    </div>
+
+                    <div class="detail-card">
+                        <h3><i class="fas fa-network-wired"></i> Open Ports</h3>
+                        <div id="portsInfo" class="info-content"></div>
+                    </div>
+
+                    <div class="detail-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Vulnerabilities</h3>
+                        <div id="vulnerabilityInfo" class="info-content"></div>
+                    </div>
+
+                    <div class="detail-card">
+                        <h3><i class="fas fa-heading"></i> Security Headers</h3>
+                        <div id="headersInfo" class="info-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Scanning website...</p>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Vulnerability Scanner. Built with security in mind.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
